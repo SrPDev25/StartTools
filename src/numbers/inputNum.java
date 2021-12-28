@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package numbers;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  *
  * @author casa
  */
-public class inputNum {
+public class InputNum {
 
     /**
      * Ask for a number
@@ -18,12 +16,20 @@ public class inputNum {
      * @param message choose the message for asking the number
      * @return return the number
      */
-    public int inputNumInt(String message) {
-        Scanner input = new Scanner(System.in);
-        int number;
-        System.out.println(message);
-        number = input.nextInt();
-        return number;
+    public static int numInt(String message) {
+        int numero = 0;
+        Scanner entrada = new Scanner(System.in);
+        boolean incorrecto = true;
+        while (incorrecto) {
+            try {
+                System.out.print(message);
+                numero = entrada.nextInt();
+            } catch (InputMismatchException ex) {
+                System.out.println("Should be a number");
+                entrada.nextLine();
+            }
+        }
+        return numero;
     }
 
     /**
@@ -32,18 +38,25 @@ public class inputNum {
      * @param min choose de minimum number for the asking number
      * @return return the asked number
      */
-    public int inputNumIntGrater(String message, int min) {
-        Scanner input = new Scanner(System.in);
-        int number;
-        System.out.println(message);
-        number = input.nextInt();
-        while (number < min) {
-            System.out.println("The numbers must be greater than " + min );
-            System.out.println(message);
-            number = input.nextInt();
-
+    public static int numIntGrater(String message, int min) {
+        int numero = 0;
+        Scanner entrada = new Scanner(System.in);
+        boolean incorrecto = true;
+        while (incorrecto) {
+            try {
+                System.out.print(message);
+                numero = entrada.nextInt();
+                if (numero < min) {
+                    System.out.println("it should be grater than "+min);
+                } else {
+                    incorrecto = false;
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("It should be a number");
+                entrada.nextLine();
+            }
         }
-        return number;
+        return numero;
     }
     
     /**
@@ -53,16 +66,23 @@ public class inputNum {
      * @param max choose the maximum number for the asking number
      * @return return the asked number
      */
-    public int inputNumIntBetween(String message, int min, int max) {
-        Scanner input = new Scanner(System.in);
-        int number;
-        System.out.println(message);
-        number = input.nextInt();
-        while (number > max || number < min) {
-            System.out.println("The numbers must be between " + min + " and " + max);
-            System.out.println(message);
-            number = input.nextInt();
-
+    public static int numIntBetween(String message, int min, int max) {
+        int number = 0;
+        Scanner entrada = new Scanner(System.in);
+        boolean incorrect = true;
+        while (incorrect) {
+            try {
+                System.out.print(message);
+                number = entrada.nextInt();
+                if (number < min || number > max) {
+                    System.out.println("The numbers must be between " + min + " and " + max);
+                } else {
+                    incorrect = false;
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("It should be a number");
+                entrada.nextLine();
+            }
         }
         return number;
     }
