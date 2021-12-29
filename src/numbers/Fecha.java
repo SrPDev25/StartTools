@@ -17,8 +17,13 @@ public class Fecha {
      * @param inputFecha String de una fecha con formato dd/mm/aaaa
      */
     public Fecha(String inputFecha) {
-        if (!setFecha(inputFecha)) {
-            System.out.println("Estan mal intoducidos los datos del constructor");
+        Scanner input = new Scanner(System.in);
+        String fechaProvisional;
+        fechaProvisional = inputFecha;
+        while (!setFecha(fechaProvisional)) {
+            System.out.println("Error: Se introdujo mal la fecha");
+            System.out.print("Introduce la fecha (dd/mm/aaaa): ");
+            fechaProvisional = input.nextLine();
         }
     }
 
@@ -32,7 +37,7 @@ public class Fecha {
      * Método para pedir que se introduzca la fecha
      */
     public void inputFecha() {
-        Scanner input = new Scanner(System.in);
+     Scanner input = new Scanner(System.in);
         String fechaProvisional;
         System.out.print("Introduce la fecha (dd/mm/aaaa): ");
         fechaProvisional = input.nextLine();
@@ -40,7 +45,7 @@ public class Fecha {
             System.out.println("Error: Se introdujo mal la fecha");
             System.out.print("Introduce la fecha (dd/mm/aaaa): ");
             fechaProvisional = input.nextLine();
-        }
+        }   
     }
 
     public void setToday(){
@@ -89,18 +94,15 @@ public class Fecha {
                     for (int pos = 0; pos < fecha.length; pos++) {
                         fecha[pos] = 0;
                     }
-                } else {
-                    comprobacion = false;
-                }
+                } 
             }
-        } catch (ArrayIndexOutOfBoundsException lessLenghtError) {//Error cuando faltan datos
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException lessLenghtError) {//Error cuando faltan datos
             comprobacion = false;
-        }catch (NumberFormatException notNumberError){
-            comprobacion=false;
         }
         return comprobacion;
 
     }
+    
 
     
     public int getMes(){
