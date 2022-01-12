@@ -1,5 +1,6 @@
 package numbers;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -49,8 +50,8 @@ public class Fecha {
     }
 
     public void setToday(){
-        GregorianCalendar fechaE=new GregorianCalendar();
-        setFecha(fechaE.get(GregorianCalendar.MONTH)+"/"+ fechaE.get(GregorianCalendar.DAY_OF_MONTH)+"/"+fechaE.get(GregorianCalendar.YEAR));
+        Calendar fechaE=new GregorianCalendar();
+        setFecha(fechaE.get(Calendar.MONTH+1)+"/"+ fechaE.get(Calendar.DATE)+"/"+fechaE.get(Calendar.YEAR));
     }
     /**
      * Introduce en la variable fecha la fecha desde un String

@@ -8,7 +8,7 @@ import java.util.Scanner;
  *
  * @author casa
  */
-public class InputNum {
+public class EntradaNumeros{
 
     /**
      * Ask for a number
