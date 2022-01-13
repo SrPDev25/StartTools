@@ -1,13 +1,14 @@
 
-package string;
+package inputs;
 
 import java.util.Scanner;
+import objects.Fecha;
 
 /**
  *
  * @author casa
  */
-public class CharacthersString {
+public class EntradaTextos {
     
     /**
      * Request user for a String value, then checks if was data entered
@@ -26,4 +27,19 @@ public class CharacthersString {
         }
         return name;
     }
+    
+    public static Fecha inputFecha(String message){
+        Fecha inputFecha=new Fecha();
+        Scanner input = new Scanner(System.in);
+        String fechaProvisional;
+        System.out.print(message);
+        fechaProvisional = input.nextLine();
+        while (!inputFecha.setFecha(fechaProvisional)) {
+            System.out.println("Error: Se introdujo mal la fecha (formato: dd/mm/aaaa)");
+            System.out.print(message);
+            fechaProvisional = input.nextLine();
+        }   
+        return inputFecha;
+    }
+            
 }

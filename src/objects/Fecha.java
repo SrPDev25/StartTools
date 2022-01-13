@@ -1,4 +1,4 @@
-package numbers;
+package objects;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -18,14 +18,7 @@ public class Fecha {
      * @param inputFecha String de una fecha con formato dd/mm/aaaa
      */
     public Fecha(String inputFecha) {
-        Scanner input = new Scanner(System.in);
-        String fechaProvisional;
-        fechaProvisional = inputFecha;
-        while (!setFecha(fechaProvisional)) {
-            System.out.println("Error: Se introdujo mal la fecha");
-            System.out.print("Introduce la fecha (dd/mm/aaaa): ");
-            fechaProvisional = input.nextLine();
-        }
+        setFecha(inputFecha);
     }
 
     /**
@@ -34,6 +27,7 @@ public class Fecha {
     public Fecha() {
     }
 
+    
     /**
      * Método para pedir que se introduzca la fecha
      */
@@ -49,6 +43,8 @@ public class Fecha {
         }   
     }
 
+    
+    
     public void setToday(){
         Calendar fechaE=new GregorianCalendar();
         setFecha(fechaE.get(Calendar.MONTH+1)+"/"+ fechaE.get(Calendar.DATE)+"/"+fechaE.get(Calendar.YEAR));
@@ -60,7 +56,7 @@ public class Fecha {
      * @return retorna un boolean para que en los otros métodos muestre un
      * respectivo error
      */
-    private boolean setFecha(String inputFecha) {
+    public boolean setFecha(String inputFecha) {
         boolean comprobacion = true;
         int diaMax;//Dias maximos del més para comparar
         String[] convert;
