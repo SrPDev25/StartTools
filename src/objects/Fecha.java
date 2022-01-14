@@ -71,7 +71,7 @@ public class Fecha {
             if (convert.length <= 3) {//Comprueba si se introducen más datos de los nocesarios
 
                 //Comprobación de bisiesto
-                if (fecha[1] == 2 && fecha[2] % 4 == 0) {
+                if (fecha[1] == 2 && bisiesto(fecha[2])) {
                     diaMax = 29;
                 } else {
                     diaMax = diasMeses[fecha[1] - 1];
@@ -101,6 +101,20 @@ public class Fecha {
     }
     
 
+    
+    
+    /**
+     * Comprueba si un año es bisiesto
+     * @param year Se intruduce in int con el año a comprobar
+     * @return true=bisiesto    false=no bisiesto
+     */
+    public boolean bisiesto(int year){
+        boolean bisiesto=false;
+        if((year%4==0&&year%100!=0)||(year%100==0&&year%400!=0)){
+            bisiesto=true;
+        }
+        return bisiesto;
+    }
     
     public int getMes(){
         return fecha[1];
