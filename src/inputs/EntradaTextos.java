@@ -37,12 +37,13 @@ public class EntradaTextos {
     public static Fecha inputFechaPasada(String message) {
         Fecha inputFecha;
         Fecha fechaHoy = new Fecha();
+
         fechaHoy.setToday();
         boolean fechaPasada = false;
         inputFecha = inputFecha(message);
         if (fechaHoy.getAnno() < inputFecha.getAnno()) {
             fechaPasada = true;
-        } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() < fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() <= fechaHoy.getDia()))) {
+        } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() > fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() > fechaHoy.getDia()))) {
             fechaPasada = true;
         }
         while (fechaPasada) {
@@ -50,7 +51,7 @@ public class EntradaTextos {
             inputFecha = inputFecha(message);
             if (fechaHoy.getAnno() < inputFecha.getAnno()) {
                 fechaPasada = true;
-            } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() < fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() <= fechaHoy.getDia()))) {
+            } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() > fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() > fechaHoy.getDia()))) {
                 fechaPasada = true;
             }
         }

@@ -47,7 +47,8 @@ public class Fecha {
     
     public void setToday(){
         Calendar fechaE=new GregorianCalendar();
-        setFecha(fechaE.get(Calendar.MONTH+1)+"/"+ fechaE.get(Calendar.DATE)+"/"+fechaE.get(Calendar.YEAR));
+        setFecha(fechaE.get(Calendar.DATE)+"/"+ fechaE.get(Calendar.MONTH)+"/"+fechaE.get(Calendar.YEAR));
+        fecha[1]+=1;
     }
     /**
      * Introduce en la variable fecha la fecha desde un String
