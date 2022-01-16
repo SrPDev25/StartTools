@@ -117,6 +117,20 @@ public class Fecha {
         return bisiesto;
     }
     
+    public static int calcularEnios(Fecha fechaAlta, int cuantosEnio){
+        Fecha fechaHoy=new Fecha();
+        fechaHoy.setToday();
+        int cantidad;
+        int annoCumplido=1;
+        if (fechaAlta.getMes()<fechaHoy.getMes()){
+            annoCumplido--;
+        }else if(fechaAlta.getMes()==fechaHoy.getMes() && fechaAlta.getDia()<=fechaHoy.getDia()){
+            annoCumplido--;
+        }
+        return (fechaHoy.getAnno()-fechaAlta.getAnno()-annoCumplido)/cuantosEnio;
+        
+    }
+    
     public int getMes(){
         return fecha[1];
     }
