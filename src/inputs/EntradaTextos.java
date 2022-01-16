@@ -53,6 +53,8 @@ public class EntradaTextos {
                 fechaPasada = true;
             } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() > fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() > fechaHoy.getDia()))) {
                 fechaPasada = true;
+            }else{
+                fechaPasada=true;
             }
         }
         return inputFecha;
