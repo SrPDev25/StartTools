@@ -201,6 +201,11 @@ public class Fecha {
         return caducidad;
     }
 
+    /**
+     * Compara dos fechas y devuelve un valor numerico
+     * @param comparacion
+     * @return -1: fecha(Menor que)comparacion 0: fecha==comparacion 1: fecha(Mayor que)comparacion
+     */
     public int compareFechaCon(Fecha comparacion) {
         int resultado = 1;
         if (fecha[2] < comparacion.getAnno()) {

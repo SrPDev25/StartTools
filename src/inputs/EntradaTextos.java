@@ -39,23 +39,10 @@ public class EntradaTextos {
         Fecha fechaHoy = new Fecha();
 
         fechaHoy.setToday();
-        boolean fechaPasada = false;
         inputFecha = inputFecha(message);
-        if (fechaHoy.getAnno() < inputFecha.getAnno()) {
-            fechaPasada = true;
-        } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() > fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() > fechaHoy.getDia()))) {
-            fechaPasada = true;
-        }
-        while (fechaPasada) {
+        while (inputFecha.compareFechaCon(fechaHoy) == 1) {
             System.out.println("No es una fecha pasada");
             inputFecha = inputFecha(message);
-            if (fechaHoy.getAnno() < inputFecha.getAnno()) {
-                fechaPasada = true;
-            } else if (fechaHoy.getAnno() == inputFecha.getAnno() && (inputFecha.getMes() > fechaHoy.getMes() || (inputFecha.getMes() == fechaHoy.getMes() && inputFecha.getDia() > fechaHoy.getDia()))) {
-                fechaPasada = true;
-            }else{
-                fechaPasada=false;
-            }
         }
         return inputFecha;
     }
