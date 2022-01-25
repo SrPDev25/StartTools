@@ -1,5 +1,6 @@
 package objects;
 
+import static inputs.EntradaTextos.inputFecha;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -12,7 +13,8 @@ public class Fecha {
 
     private int fecha[] = new int[3];
     private static int diasMeses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};//static ya que pertenece la misma lista a todas las fechas
-    private static final String[] MESES={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+    private static final String[] MESES = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
     /**
      * Constructor con una fecha ya introducida
      *
@@ -28,7 +30,6 @@ public class Fecha {
     public Fecha() {
     }
 
-    
     /**
      * Método para pedir que se introduzca la fecha
      */
@@ -44,6 +45,9 @@ public class Fecha {
         }
     }
 
+    /**
+     * Metodo que inserta la fecha como el dia de hoy
+     */
     public void setToday() {
         Calendar fechaE = new GregorianCalendar();
         setFecha(fechaE.get(Calendar.DATE) + "/" + fechaE.get(Calendar.MONTH) + "/" + fechaE.get(Calendar.YEAR));
@@ -115,11 +119,12 @@ public class Fecha {
         return bisiesto;
     }
 
-    /** 
+    /**
      * Metodo que calcula los enios de una fecha hasta el dia de hoy.
+     *
      * @param fechaAlta
      * @param cuantosEnio
-     * @return 
+     * @return
      */
     public static int calcularEnios(Fecha fechaAlta, int cuantosEnio) {
         Fecha fechaHoy = new Fecha();
@@ -154,7 +159,9 @@ public class Fecha {
     }
 
     /**
-     * A partir de los dias faltantes para el vencimiento saca la fecha del mismo
+     * A partir de los dias faltantes para el vencimiento saca la fecha del
+     * mismo
+     *
      * @param diasVencimiento Introduce los dias para el vencimiento
      * @return retorna la fecha de vencimiento
      */
@@ -192,6 +199,24 @@ public class Fecha {
         caducidad.fecha[0] += orden;
 
         return caducidad;
+    }
+
+    public int compareFechaCon(Fecha comparacion) {
+        int resultado = 1;
+        if (fecha[2] < comparacion.getAnno()) {
+            resultado = -1;
+        } else if (fecha[2] == comparacion.getAnno()) {
+            if (fecha[1] < comparacion.getMes()) {
+                resultado = -1;
+            } else if (fecha[1] == comparacion.getMes()) {
+                if (fecha[0]<comparacion.getDia()) {
+                    resultado = -1;
+                }else if(fecha[0]==comparacion.getDia()){
+                    resultado=0;
+                }
+            }
+        }
+        return resultado;
     }
 
     public int getMes() {
