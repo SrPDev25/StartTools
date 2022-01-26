@@ -1,6 +1,5 @@
 package objects;
 
-import static inputs.EntradaTextos.inputFecha;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -10,8 +9,7 @@ import java.util.Scanner;
  * @author casa
  */
 public class Fecha {
-
-    private int fecha[] = new int[3];
+    private int dia,mes,anno;
     private static int diasMeses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};//static ya que pertenece la misma lista a todas las fechas
     private static final String[] MESES = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -51,7 +49,7 @@ public class Fecha {
     public void setToday() {
         Calendar fechaE = new GregorianCalendar();
         setFecha(fechaE.get(Calendar.DATE) + "/" + fechaE.get(Calendar.MONTH) + "/" + fechaE.get(Calendar.YEAR));
-        fecha[1] += 1;
+        mes += 1;
     }
 
     /**
@@ -69,33 +67,33 @@ public class Fecha {
 
         try {
             //Introduce los datos en fecha
-            for (int pos = 0; pos < fecha.length; pos++) {
-                fecha[pos] = Integer.parseInt(convert[pos]);
-            }
-
+            dia=Integer.parseInt(convert[0]);
+            mes=Integer.parseInt(convert[1]);
+            anno=Integer.parseInt(convert[2]);
+            
             if (convert.length <= 3) {//Comprueba si se introducen más datos de los nocesarios
 
                 //Comprobación de bisiesto
-                if (fecha[1] == 2 && bisiesto(fecha[2])) {
+                if (mes == 2 && bisiesto(anno)) {
                     diaMax = 29;
                 } else {
-                    diaMax = diasMeses[fecha[1] - 1];
+                    diaMax = diasMeses[mes - 1];
                 }
 
                 //Comprobación de fecha
-                if (fecha[2] < 1) {//Comprobacion de año
+                if (anno < 1) {//Comprobacion de año
                     comprobacion = false;
-                } else if (fecha[1] > 12 || fecha[1] < 1) {//Comprobación de mes
+                } else if (mes > 12 || mes < 1) {//Comprobación de mes
                     comprobacion = false;
-                } else if (fecha[0] > diaMax || fecha[0] < 1) {//Comprobación de año
+                } else if (dia > diaMax || dia < 1) {//Comprobación de año
                     comprobacion = false;
                 }
 
                 //Si comprobación==false se hacen nula la fecha
                 if (!comprobacion) {
-                    for (int pos = 0; pos < fecha.length; pos++) {
-                        fecha[pos] = 0;
-                    }
+                    dia=0;
+                    mes=0;
+                    anno=0;
                 }
             }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException lessLenghtError) {//Error cuando faltan datos
@@ -129,7 +127,6 @@ public class Fecha {
     public static int calcularEnios(Fecha fechaAlta, int cuantosEnio) {
         Fecha fechaHoy = new Fecha();
         fechaHoy.setToday();
-        int cantidad;
         int annoCumplido = 1;
         if (fechaAlta.getMes() < fechaHoy.getMes()) {
             annoCumplido--;
@@ -148,13 +145,13 @@ public class Fecha {
     public int calcularOrden() {
         int orden = 0;
         int diasMesProvisional[] = diasMeses;
-        if (bisiesto(fecha[2])) {
+        if (bisiesto(anno)) {
             diasMesProvisional[1] = 29;
         }
-        for (int i = 0; i < fecha[1]; i++) {
+        for (int i = 0; i < mes; i++) {
             orden += diasMesProvisional[i];
         }
-        orden += fecha[1];
+        orden += mes;
         return orden;
     }
 
@@ -173,16 +170,16 @@ public class Fecha {
         int orden;
         int diasAnno = 365;
         orden = fechaHoy.calcularOrden();
-        if (bisiesto(fecha[2])) {
+        if (bisiesto(anno)) {
             diasMesProvisional[1] = 29;
             diasAnno = 366;
         }
         orden += diasVencimiento;
         while (orden < diasAnno) {
-            fechaHoy.fecha[2] += 1;
+            fechaHoy.anno += 1;
             orden -= diasAnno;
 
-            if (bisiesto(fechaHoy.fecha[2])) {
+            if (bisiesto(fechaHoy.anno)) {
                 diasMesProvisional[1] = 29;
                 diasAnno = 366;
             } else {
@@ -190,13 +187,13 @@ public class Fecha {
                 diasAnno = 365;
             }
         }
-        caducidad.fecha[2] = fechaHoy.fecha[2];
-        caducidad.fecha[1] = 1;
-        while (orden < diasMesProvisional[caducidad.fecha[1] - 1]) {
-            orden -= diasMesProvisional[caducidad.fecha[1] - 1];
-            caducidad.fecha[1]++;
+        caducidad.anno = fechaHoy.anno;
+        caducidad.mes = 1;
+        while (orden < diasMesProvisional[caducidad.mes - 1]) {
+            orden -= diasMesProvisional[caducidad.mes - 1];
+            caducidad.mes++;
         }
-        caducidad.fecha[0] += orden;
+        caducidad.dia += orden;
 
         return caducidad;
     }
@@ -208,15 +205,15 @@ public class Fecha {
      */
     public int compareFechaCon(Fecha comparacion) {
         int resultado = 1;
-        if (fecha[2] < comparacion.getAnno()) {
+        if (anno < comparacion.getAnno()) {
             resultado = -1;
-        } else if (fecha[2] == comparacion.getAnno()) {
-            if (fecha[1] < comparacion.getMes()) {
+        } else if (anno == comparacion.getAnno()) {
+            if (mes < comparacion.getMes()) {
                 resultado = -1;
-            } else if (fecha[1] == comparacion.getMes()) {
-                if (fecha[0]<comparacion.getDia()) {
+            } else if (mes == comparacion.getMes()) {
+                if (dia<comparacion.getDia()) {
                     resultado = -1;
-                }else if(fecha[0]==comparacion.getDia()){
+                }else if(dia==comparacion.getDia()){
                     resultado=0;
                 }
             }
@@ -225,14 +222,14 @@ public class Fecha {
     }
 
     public int getMes() {
-        return fecha[1];
+        return mes;
     }
 
     public int getDia() {
-        return fecha[0];
+        return dia;
     }
 
     public int getAnno() {
-        return fecha[2];
+        return anno;
     }
 }
