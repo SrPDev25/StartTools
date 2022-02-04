@@ -28,6 +28,22 @@ public class EntradaTextos {
         return name;
     }
 
+    public static String inputStringChar(String message) {
+        Scanner input = new Scanner(System.in);
+        String character;
+        String[] check;
+        System.out.println(message);
+        character = input.nextLine();
+        check = character.split("");
+        while (check.length != 1) {
+            System.out.println("It's not a character");
+            System.out.println(message);
+            character = input.nextLine();
+            check = character.split("");
+        }
+        return character;
+    }
+
     /**
      * Pide al usuario una fecha pasada al dia actual
      *
