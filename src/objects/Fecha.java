@@ -221,10 +221,19 @@ public class Fecha {
         return resultado;
     }
 
+    /**
+     * 
+     * @return return de date in String (format: day/month/year)
+     */
+    public String stringFecha(){
+        return dia +"/"+mes+"/"+anno;
+    }
+    
     public int getMes() {
         return mes;
     }
 
+    
     public int getDia() {
         return dia;
     }
