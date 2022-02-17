@@ -7,19 +7,20 @@ package coding;
  */
 public class Coding {
 
+    static int codingNum=1;
+    
     public static String coding1(String uncoded){
         String charPos="Mp0,HGF?VC.ñKJNS¿UIO8nju7bhy6vg¡WQZPBlo9mkiXDEt5cfr4xd!e3zRTYsw2a q1AÑL*";
 	String charCod="kiXSp0,Hn!ju7b9m5ZPD?2a q6v4xdeC.ñK¿JhyGUIFVBzRTYswÑLlo¡NQcfrgWO8Et1A3M*";
         String[] charPosArr=charPos.split("");
         String[] charCodArr=charCod.split("");
-	int codingNum=69;
         int pos;
 	String[] coding=uncoded.split("");
         for(int i=0;i<coding.length;i++){
             pos=takePos(coding[i], charPosArr);
             pos-=codingNum;
             if(pos<0){
-                pos=(coding.length-pos*(-1))+1;
+                pos=(charPosArr.length-pos*-1)+1;
             }
             coding[i]=charCodArr[pos];
         }
@@ -31,7 +32,6 @@ public class Coding {
 	String charCod="kiXSp0,Hn!ju7b9m5ZPD?2a q6v4xdeC.ñK¿JhyGUIFVBzRTYswÑLlo¡NQcfrgWO8Et1A3M*";
         String[] charPosArr=charPos.split("");
         String[] charCodArr=charCod.split("");
-	int codingNum=69;
         int pos;
 	String[] coding=uncoded.split("");
         for(int i=0;i<coding.length;i++){
@@ -40,7 +40,7 @@ public class Coding {
             if(pos>=charPosArr.length){
                 pos=pos-charPosArr.length;
             }
-            coding[i]=charCodArr[pos];
+            coding[i]=charPosArr[pos];
         }
         return String.join("", coding);
     }
