@@ -43,7 +43,7 @@ public class CodingTest {
     public void testCoding1() {
         System.out.println("coding1");
         String uncoded = "Mp0,";
-        String expResult = "";
+        String expResult = "1A3M";
         String result = Coding.coding1(uncoded,4);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
