@@ -42,9 +42,9 @@ public class CodingTest {
     @Test
     public void testCoding1() {
         System.out.println("coding1");
-        String uncoded = "Hola";
+        String uncoded = "Mp0,";
         String expResult = "";
-        String result = Coding.coding1(uncoded);
+        String result = Coding.coding1(uncoded,4);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +58,7 @@ public class CodingTest {
         System.out.println("uncoding1");
         String uncoded = "";
         String expResult = "";
-        String result = Coding.uncoding1(uncoded);
+        String result = Coding.uncoding1(uncoded,1);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
