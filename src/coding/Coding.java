@@ -7,9 +7,8 @@ package coding;
  */
 public class Coding {
 
-    static int codingNum=1;
     
-    public static String coding1(String uncoded){
+    public static String coding1(String uncoded,int codingNum){
         String charPos="Mp0,HGF?VC.ñKJNS¿UIO8nju7bhy6vg¡WQZPBlo9mkiXDEt5cfr4xd!e3zRTYsw2a q1AÑL*";
 	String charCod="kiXSp0,Hn!ju7b9m5ZPD?2a q6v4xdeC.ñK¿JhyGUIFVBzRTYswÑLlo¡NQcfrgWO8Et1A3M*";
         String[] charPosArr=charPos.split("");
@@ -27,7 +26,7 @@ public class Coding {
         return String.join("", coding);
     }
     
-    public static String uncoding1(String uncoded){
+    public static String uncoding1(String uncoded,int codingNum){
         String charPos="Mp0,HGF?VC.ñKJNS¿UIO8nju7bhy6vg¡WQZPBlo9mkiXDEt5cfr4xd!e3zRTYsw2a q1AÑL*";
 	String charCod="kiXSp0,Hn!ju7b9m5ZPD?2a q6v4xdeC.ñK¿JhyGUIFVBzRTYswÑLlo¡NQcfrgWO8Et1A3M*";
         String[] charPosArr=charPos.split("");
