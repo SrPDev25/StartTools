@@ -221,6 +221,10 @@ public class Fecha {
         return resultado;
     }
 
+    public static String monthName(int numMes){
+        return MESES[numMes+1];
+    }
+    
     /**
      * 
      * @return return de date in String (format: day/month/year)
