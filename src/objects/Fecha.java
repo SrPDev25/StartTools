@@ -222,7 +222,7 @@ public class Fecha {
     }
 
     public static String monthName(int numMes){
-        return MESES[numMes+1];
+        return MESES[numMes-1];
     }
     
     /**
