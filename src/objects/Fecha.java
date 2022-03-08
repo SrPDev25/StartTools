@@ -103,6 +103,16 @@ public class Fecha {
 
     }
 
+    
+    public static String fechaCompleta(){
+        Fecha hoy=new Fecha();
+        hoy.setToday();
+        String fecha="";
+        
+        fecha=hoy.dia+"/"+Fecha.monthName(hoy.mes)+"/"+hoy.anno;
+        
+        return fecha;
+    }
     /**
      * Comprueba si un año es bisiesto
      *
