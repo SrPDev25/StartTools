@@ -27,7 +27,31 @@ public class EntradaTextos {
         }
         return name;
     }
+    
+    /**
+     * Request for a String with a limit size in the string
+     * @param message message for the request
+     * @param lengthLimit max limit of the string
+     * @return 
+     */
+    public static String inputStringLength(String message, int lengthLimit) {
+        Scanner entrada = new Scanner(System.in);
+        String name;
+        System.out.print(message);
+        name = entrada.nextLine();
+        while (name.equalsIgnoreCase("") || name.length()>lengthLimit) {
+            System.out.println("No data entered");
+            System.out.print(message);
+            name = entrada.nextLine();
+        }
+        return name;
+    }
 
+    /**
+     * Request for a 1 character string
+     * @param message
+     * @return 
+     */
     public static String inputStringChar(String message) {
         Scanner input = new Scanner(System.in);
         String character;
