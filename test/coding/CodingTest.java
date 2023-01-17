@@ -44,7 +44,7 @@ public class CodingTest {
         System.out.println("coding1");
         String uncoded = "Mp0,";
         String expResult = "1A3M";
-        String result = Coding.coding1(uncoded,4);
+        String result = Coding.encrypt(uncoded,4);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +58,7 @@ public class CodingTest {
         System.out.println("uncoding1");
         String uncoded = "";
         String expResult = "";
-        String result = Coding.uncoding1(uncoded,1);
+        String result = Coding.unencrypt(uncoded,1);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
