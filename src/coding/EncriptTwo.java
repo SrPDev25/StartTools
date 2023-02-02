@@ -6,12 +6,13 @@ import java.util.Random;
  *
  * @author SrPollo
  */
-public class Coding {
+public class EncriptTwo {
 
+    private static String keyboardKeys=" !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
     //Conjunto de char donde encuntra la posición del caracter a cifrar
-    private static String charPosArr[] = "Mp0,HGJNS¿UIO8nju7bhy6vg¡WQZPBlo9mF?VC.ñKkiXDEt5cfr4xd!e3zRTYsw2a q1AÑL*".split("");
+    private static String charPosArr[];
     //Conjunto de char donde con la posición cogida del anterior array + el numero indicado se coge el caracter resultado
-    private static String charCodArr[] = "kiXSp0,Hn!ju7b9m5ZPD?2a q6v4xdeC.ñK¿JhyGUIFVBzRTYswÑLlo¡NQcfrgWO8Et1A3M*".split("");
+    private static String charCodArr[];
     //ñ4rO
     /**
      * Encripta la palabra
@@ -96,6 +97,52 @@ public class Coding {
 
         
         return num;
+    }
+    
+    private void chargeStrings(){
+        String keyboardToRandom=keyboardKeys;
+        String random1="";
+        String random2="";
+        
+        int randomNumber = 3;//TODO cambiar a una operación con la fecha
+        
+        random1=randomizeString(randomNumber);
+        
+        
+    }
+
+    public static String randomizeString(int randomNumber) {
+        String random="";
+        String keyboardToRandom=keyboardKeys;
+        int pos = keyboardToRandom.length()-1;
+        int seed;
+        char mark;
+        Random ram = new Random();
+        
+        ram.setSeed(randomNumber);
+        seed = Coding.randomBetween(randomNumber * pos, 0, keyboardToRandom.length());
+        //Marca que indica que caractes ya ha sido usado, es el primer caracter usado
+        mark = keyboardToRandom.charAt(seed);
+        random+=(char)seed;
+        //Se explica en el bucle
+        int corrector=3;
+        while (pos != 0) {
+            //Si esa posición ya ha sido cogida sigue buscando
+            while (keyboardToRandom.charAt(seed) == mark) {
+                //Como pos no cambia dentro de este bucle se añade el factor corrector
+                seed = Coding.randomBetween(randomNumber * (pos*corrector), 0, keyboardToRandom.length()-1);
+                //Modifica el corrector para hacer más intentos
+                corrector++;
+            }
+            
+            //Aplica los cambios 
+            corrector=3;//Se resetea el corrector
+            random+=keyboardToRandom.charAt(seed);
+            //Sustituye el caracter ya cogido por la marca, para que no lo vuelva a coger
+            keyboardToRandom=keyboardToRandom.replace(keyboardToRandom.charAt(seed), mark );
+            pos--;
+        }
+        return random;
     }
     
     
