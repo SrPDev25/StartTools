@@ -27,8 +27,9 @@ public class EncryptionTwo {
      * @param codingNum Número clave para la desencriptación
      * @return
      */
-    public String encrypt(String uncoded, int codingNum) {
+    public String encrypt(String uncoded,int codingNum) {
         int pos;
+        
         String[] coding = uncoded.split("");
 
         if (codingNum < 0) {
@@ -60,11 +61,12 @@ public class EncryptionTwo {
      * número de encriptación Si el return es "", o los carácteres no son
      * válidos o el número no es válido
      */
-    public String encriptarParaTransferir(String uncoded, int codingNum) {
+    public String encriptarParaTransferir(String uncoded) {
         String encryption = "";
         String numEncripted;
+        int codingNum=randomBetween(1,999);
 
-        if (comprobarCaracteresYNumero(uncoded, codingNum)) {
+        if (comprobarCaracteresYNumero(uncoded)) {
             encryption = encrypt(uncoded, codingNum);
             numEncripted = encryptNumber(codingNum);
             encryption = numEncripted + encryption;
@@ -130,8 +132,19 @@ public class EncryptionTwo {
         return pos - 1;
     }
 
-    public static int randomBetween(int seed, int min, int max) {
+    public static int randomBetweenSeed(int seed, int min, int max) {
         int num = 0;
+        Random ram = new Random();
+        ram.setSeed(seed);
+        num = ram.nextInt(max + 1);
+
+        return num;
+    }
+    
+    public static int randomBetween(int min, int max) {
+        int num = 0;
+        LocalDateTime lo = java.time.LocalDateTime.now();
+        long seed=System.currentTimeMillis();
         Random ram = new Random();
         ram.setSeed(seed);
         num = ram.nextInt(max + 1);
@@ -189,15 +202,14 @@ public class EncryptionTwo {
         return random;
     }
 
-    private boolean comprobarCaracteresYNumero(String uncoded, int codingNum) {
-        boolean numValid = codingNum > 0 && codingNum < 1000;
+    private boolean comprobarCaracteresYNumero(String uncoded) {
         boolean caracteresValidos = true;
         int pos = uncoded.length()-1;
         while (caracteresValidos && pos != 0) {
             caracteresValidos = keyboardKeys.indexOf(uncoded.charAt(pos)) != -1;
             pos--;
         }
-        return numValid && caracteresValidos;
+        return caracteresValidos;
     }
     
     /**
@@ -210,9 +222,9 @@ public class EncryptionTwo {
         
 //      Como se encriptan 3 caracteres del número, se transforma en un String de 
 //      3 caracteres
-        if(codingNum%10!=0){
+        if(codingNum/10==0){
             encriptedNumber="00"+codingNum;
-        }else if(codingNum%100==0){
+        }else if(codingNum/100==0){
             encriptedNumber="0"+codingNum;
         }else{
             encriptedNumber=""+codingNum;

@@ -18,7 +18,7 @@ public class Pruebas {
        EncryptionTwo en=new EncryptionTwo();
        String texto="hola";
         System.out.println(texto);
-        texto=en.encriptarParaTransferir(texto, 3);
+        texto=en.encriptarParaTransferir(texto);
         System.out.println(texto);
         texto=en.desencriptarTransferido(texto);
         System.out.println(texto);
