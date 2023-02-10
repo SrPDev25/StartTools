@@ -15,13 +15,12 @@ import java.util.Calendar;
 public class Pruebas {
 
     public static void main(String[] args) {
-       EncryptionTwo en=new EncryptionTwo();
-       String texto="hola";
-        System.out.println(texto);
-        texto=en.encriptarParaTransferir(texto);
-        System.out.println(texto);
-        texto=en.desencriptarTransferido(texto);
-        System.out.println(texto);
+//        int pos =0;
+//        while(pos!=1000){
+//        System.out.print((char) pos);
+//        pos++;
+//        }
+        System.out.println((int)'ñ');
     }
 
 }

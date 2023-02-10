@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class EncryptionTwo {
 
-    private static String keyboardKeys = " !\"#$€%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+    private static String keyboardKeys = "¡!\"#$€%&\'()*+,-./0123456789:;<=> ¿?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ÁáÉéÍóÓóÚú";
     //Conjunto de char donde encuntra la posición del caracter a cifrar
     private static String charPosArr[];
     //Conjunto de char donde con la posición cogida del anterior array + el numero indicado se coge el caracter resultado
@@ -171,25 +171,26 @@ public class EncryptionTwo {
     private static String randomizeString(int randomNumber) {
         String random = "";
         String keyboardToRandom = keyboardKeys;
-        int pos = keyboardToRandom.length() - 1;
+        int pos = keyboardToRandom.length() - 2;
         int seed;
         char mark;
         Random ram = new Random();
 
         ram.setSeed(randomNumber);
-        seed = Coding.randomBetween(randomNumber * pos, 0, keyboardToRandom.length());
+        seed = Coding.randomBetween(randomNumber * pos, 0, keyboardKeys.length());
         //Marca que indica que caractes ya ha sido usado, es el primer caracter usado
         mark = keyboardToRandom.charAt(seed);
-        random += (char) seed;
+        random += mark;
         //Se explica en el bucle
         int corrector = 3;
         while (pos != 0) {
             //Si esa posición ya ha sido cogida sigue buscando
             while (keyboardToRandom.charAt(seed) == mark) {
                 //Como pos no cambia dentro de este bucle se añade el factor corrector
-                seed = Coding.randomBetween(randomNumber * (pos * corrector), 0, keyboardToRandom.length() - 1);
+                seed = Coding.randomBetween(randomNumber - pos * corrector, 0, keyboardToRandom.length() - 1);
                 //Modifica el corrector para hacer más intentos
                 corrector++;
+
             }
 
             //Aplica los cambios 
