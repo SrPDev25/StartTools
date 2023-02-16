@@ -24,10 +24,10 @@ public class Pruebas {
 
         EncryptionTwo en=new EncryptionTwo();
         String texto="Buenas tardes paco";
-        System.out.println(texto);
-        texto=en.encriptarParaTransferir(texto);
-        System.out.println(texto);
-        texto=en.desencriptarTransferido(texto);
+//        System.out.println(texto);
+//        texto=en.encriptarParaTransferir(texto);
+//        System.out.println(texto);
+        texto=en.desencriptarTransferido("˽˳șΏՊԮֱ≶־◇Ⓥ≶╳ᶝԮ־◇ц≶ʳ✘");
         System.out.println(texto);
         System.out.println((int)'€');
     }
